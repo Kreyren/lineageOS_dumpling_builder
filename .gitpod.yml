@@ -1,1 +1,12 @@
 privileged: true
+tasks:
+  # Grabbed from https://wiki.lineageos.org/devices/dumpling/build
+  - before: make install-deps
+  - before: |
+    mkdir ~/bin
+    mkdir ~/android
+    mkdir ~/android/lineage
+    curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+    chmod a+x ~/bin/repo
+    [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+    repo init -u https://github.com/LineageOS/android.git -b lineage-17.0
